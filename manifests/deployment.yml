@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: organicnodeserverapi 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: organicnodeserverapi
+  template:
+    metadata:
+      labels:
+        app: organicnodeserverapi 
+    spec:
+      containers:
+        - name: organicnodeserverapi 
+          image: azcontainer0921.azurecr.io/organicnodeserverapi
+          ports:
+          - containerPort: 4500

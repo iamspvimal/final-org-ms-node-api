@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: organicnodeserverapi
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 4500 
+    selector:
+        app: organicnodeserverapi

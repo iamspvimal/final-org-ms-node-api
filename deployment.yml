@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organicnodeserverapi-deployment
+  labels:
+    app: organicnodeserverapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: organicnodeserverapi
+  template:
+    metadata:
+      labels:
+        app: organicnodeserverapi
+    spec:
+      containers:
+      - name: organicnodeserverapi
+        image:  azcontainer0921.azurecr.io/organicnodeserverapi:latest
+        ports:
+        - containerPort: 4500
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: organicnodeserverapi-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: organicnodeserverapi
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 4500
+      targetPort: 4500
